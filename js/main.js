@@ -1,5 +1,6 @@
 var nameError = document.getElementById("nameError");
 var urlError = document.getElementById("urlError");
+var urlMsg = document.getElementById("urlMsg");
 var existError = document.getElementById("existError");
 
 // ---------------------------------------------saveBookmark--------------------------------------------------------------
@@ -26,7 +27,6 @@ function saveBookmark(e) {
 
   clearForm();
   displayData();
-
   e.preventDefault();
 }
 
@@ -77,6 +77,7 @@ function clearForm() {
   siteUrl.value = "";
   nameError.classList.replace("d-block" , "d-none");
   urlError.classList.replace("d-block" , "d-none");
+  urlMsg.classList.replace("d-block" , "d-none");
   existError.classList.replace("d-block" , "d-none");
 }
 
@@ -89,8 +90,8 @@ function validation(siteName, siteUrl, bookmarks) {
   }
   else{
     nameError.classList.replace("d-block" , "d-none");
-
   }
+
   if (!siteUrl) {
     urlError.classList.replace("d-none", "d-block");
     return false;
@@ -101,13 +102,14 @@ function validation(siteName, siteUrl, bookmarks) {
   var regex = new RegExp(expression);
 
   if (!siteUrl.match(regex)) {
-    urlError.classList.replace("d-none", "d-block");
+    urlMsg.classList.replace("d-none", "d-block");
     return false;
   }
   if (!checkName(siteName, bookmarks)){
     return false
   }
   return true;
+  
 }
 
 
